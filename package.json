@@ -6,7 +6,8 @@
   "dependencies": {
     "crawler": "^1.1.4",
     "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0"
+    "egg-scripts": "^2.5.0",
+    "egg-view-nunjucks": "^2.2.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
