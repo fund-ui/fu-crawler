@@ -11,11 +11,6 @@ git config user.email “wj871287@gmail.com”
 git config user.name “ddj13246523936”
 ```
 
-```git
-git config user.email “dengju.deng@sail-fs.com”
-git config user.name “ddj13246523936”
-```
-
 ## 主要业务
 
 - 行业新闻资讯爬取
