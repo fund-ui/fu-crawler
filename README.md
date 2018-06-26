@@ -8,7 +8,6 @@
 
 ```git
 git config user.email “wj871287@gmail.com”
-git config user.name “ddj13246523936”
 ```
 
 ## 主要业务
