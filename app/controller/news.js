@@ -13,7 +13,12 @@ class NewsController extends Controller {
    * API-新闻列表
    */
   async newsList() {
-    
+    const newsData = await this.ctx.service.privateEquity.news.newsList(2);
+    this.ctx.body = {
+      code: 1,
+      message: 'success',
+      data: newsData
+    };
   }
   /**
    * API-新闻详情
