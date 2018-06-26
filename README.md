@@ -4,6 +4,13 @@
 
 养一只 nodejs 爬虫溜达中国证券网，再造一个'东方财富'也不在话下
 
+## Git 配置
+
+```git
+git config user.email “wj871287@gmail.com”
+git config user.name “ddj13246523936”
+```
+
 ## 主要业务
 
 - 行业新闻资讯爬取
