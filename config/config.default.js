@@ -32,6 +32,11 @@ module.exports = appInfo => {
   config.privateEquity = {
     serverUrl: 'http://simu.eastmoney.com'
   }
+
+  // 文件上传-增加对 .pdf 扩展名的支持
+  config.multipart = {
+    fileExtensions: [ '.pdf' ], 
+  }
   
   return config;
 };

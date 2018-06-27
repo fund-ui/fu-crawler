@@ -12,4 +12,6 @@ module.exports = app => {
   router.get('/api/v2/newsList', controller.news.newsList);
   // 私募市场
   router.get('/market', controller.market.index);
+  // 文件系统
+  router.post('/upload', controller.uploader.upload);
 };
