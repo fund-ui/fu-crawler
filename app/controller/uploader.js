@@ -1,33 +1,49 @@
-const path = require('path');
-const sendToWormhole = require('stream-wormhole');
-const Controller = require('egg').Controller;
-const fs = require('fs');
+'use strict';
 
+const path = require('path');
+const Controller = require('egg').Controller;
 class UploaderController extends Controller {
   /**
-   * 控制器-单文件上传存储至硬盘指定路径
+   * 控制器-返回文件上传页面
+   */
+  async index() {
+    await this.ctx.render('uploader.tpl', { state: 'FuUploader' });
+  }
+  /**
+   * 控制器-单文件上传存储至硬盘指定路径-同步
    */
   async upload() {
     const ctx = this.ctx;
     const stream = await ctx.getFileStream();
     const filename = encodeURIComponent(stream.fields.title) + path.extname(stream.filename).toLowerCase();
-    const target = path.join(this.config.baseDir, 'app/public/file', filename);
-    // 保存文件流至本地指定路径
-    const saveFile = (stream, target) => {
-      return new Promise((resolve, reject) => {
-        const ws = fs.createWriteStream(target);
-        stream.pipe(ws);
-        ws.on('error', reject);
-        ws.on('finish', resolve('success'));
-      })
-    }
+    const target = path.join(this.config.baseDir, 'app/public/file', filename); 
     try {
-      await saveFile(stream, target);
+      const state = await ctx.service.fileManage.saveFile(stream, target); // 存储文件
+      state === "success" ? ctx.redirect('/public/file/' + encodeURIComponent(filename)) : ctx.redirect('/uploader');
     } catch (err) {
-      await sendToWormhole(stream);
+      await ctx.service.fileManage.destroyFile(stream); // 销毁文件
       throw err;
     }
-    this.ctx.redirect('/public/file/' + encodeURIComponent(filename));
+  }
+  /**
+   * 控制器-单文件上传存储至硬盘指定路径-异步
+   */
+  async uploadAjax() {
+    const ctx = this.ctx;
+    const stream = await ctx.getFileStream();
+    const filename = encodeURIComponent(stream.fields.title) + path.extname(stream.filename).toLowerCase();
+    const target = path.join(this.config.baseDir, 'app/public/file', filename); 
+    try {
+      const state = await ctx.service.fileManage.saveFile(stream, target); // 存储文件
+      ctx.body = {
+        code: 1,
+        message: state,
+        data: []
+      };
+    } catch (err) {
+      await ctx.service.fileManage.destroyFile(stream); // 销毁文件
+      throw err;
+    }
   }
 }
 

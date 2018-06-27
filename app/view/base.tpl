@@ -10,6 +10,7 @@
       <li><a href="./">Home</a></li>
       <li><a href="./news">News</a></li>
       <li><a href="./market">Market</a></li>
+      <li><a href="./uploader">Uploader</a></li>
     </ul>
     <div class="content">
         {% block content %}{% endblock %}

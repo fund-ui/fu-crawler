@@ -13,5 +13,7 @@ module.exports = app => {
   // 私募市场
   router.get('/market', controller.market.index);
   // 文件系统
-  router.post('/upload', controller.uploader.upload);
+  router.get('/uploader', controller.uploader.index);
+  router.post('/upload', controller.uploader.upload); // 单文件同步上传
+  router.post('/uploadAjax', controller.uploader.uploadAjax); // 单文件异步上传
 };
