@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Hacker News</title>
-    <link rel="stylesheet" href="/public/css/news.css" />
+    <link rel="stylesheet" href="/public/css/layout.css" />
   </head>
   <body>
     <h1>Private Equity Crawler</h1>

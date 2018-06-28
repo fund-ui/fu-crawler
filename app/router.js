@@ -16,4 +16,5 @@ module.exports = app => {
   router.get('/uploader', controller.uploader.index);
   router.post('/upload', controller.uploader.upload); // 单文件同步上传
   router.post('/uploadAjax', controller.uploader.uploadAjax); // 单文件异步上传
+  router.post('/uploadMulti', controller.uploader.uploadMulti); // 多文件异步上传
 };
