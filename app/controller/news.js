@@ -24,7 +24,7 @@ class NewsController extends Controller {
    * API-新闻详情
    */
   async newsInfo() {
-
+    
   }
 }
 

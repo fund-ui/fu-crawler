@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Hacker News</title>
+    <title>FUCrawler</title>
     <link rel="stylesheet" href="/public/css/layout.css" />
   </head>
   <body>
@@ -11,6 +11,7 @@
       <li><a href="./news">News</a></li>
       <li><a href="./market">Market</a></li>
       <li><a href="./uploader">Uploader</a></li>
+      <li><a href="./fileManage">FileManage</a></li>
     </ul>
     <div class="content">
         {% block content %}{% endblock %}

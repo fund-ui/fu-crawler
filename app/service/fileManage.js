@@ -16,6 +16,9 @@ class FileManageService extends Service {
         ws.on('finish', () => { resolve('success'); });
     });
   }
+  /**
+   * 服务-销毁文件
+   */
   async destroyFile() {
     await sendToWormhole(stream); // 销毁文件
   }

@@ -9,7 +9,8 @@
   file: <input type="file" name="file"/>
   <button type="submit">上传</button>
 </form>{# 单文件异步 #}
-<h3>文件上传-异步</h3>
+<h3>文件上传-异步+progress</h3>
+<div id="fu-progress" style="height: 20px;text-align:center"></div>
 <form name="asynForm" enctype="multipart/form-data">
   title: <input type="text" name="title">
   file: <input type="file" name="file">
@@ -20,7 +21,8 @@
   file: <input type="file" name="file" multiple="multiple">
   <input type="button" value="上传" onclick="uploadMulti()" />
 </form>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+{# <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> #}
 <script>
   // 异步单文件
   function uploadSingle() {
@@ -31,6 +33,18 @@
       fm.append('file', file);
       var request = new XMLHttpRequest();
       request.open('POST', '/uploadAjax?_csrf={{ ctx.csrf | safe }}');
+      request.upload.onprogress = function(evt) {
+        console.log(evt);
+        var percent = (evt.loaded / evt.total).toFixed(2); // => 计算百分比
+        var progress = document.getElementById('fu-progress');
+            progress.style.width = percent * 300 + 'px';
+            progress.style.background = 'skyblue';
+      }
+      request.onreadystatechange = function(){
+          if(request.readyState == 4){
+              alert(request.responseText);
+          }
+      }
       request.send(fm);
   }
   // 异步多文件
