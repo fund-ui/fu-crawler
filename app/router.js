@@ -19,5 +19,6 @@ module.exports = app => {
   router.post('/uploadMulti', controller.uploader.uploadMulti); // 多文件异步上传
   // 文件管理
   router.get('/fileManage', controller.fileManage.index); // 文件管理示例页面
-  router.get('/api/v2/fileList', controller.fileManage.fileList); // 文件列表
+  //router.get('/api/v2/fileList', controller.fileManage.fileList); // 文件列表
+  router.get('/api/v2/fileTree', controller.fileManage.fileTree); // 文件树形控件
 };
